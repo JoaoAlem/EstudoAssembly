@@ -1,0 +1,66 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "nasm",
+            "args": [
+                "-f",
+                "elf64",
+                "${fileDirname}/${fileBasenameNoExtension}.asm",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.o"
+            ],
+            "presentation": {
+                "focus": false,
+                "panel": "shared",
+                "reveal": "never",
+                "clear": true,
+                "close": true
+            }
+        },
+        {
+            "label": "LINK",
+            "command": "ld",
+            "args": [
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "${fileDirname}/${fileBasenameNoExtension}.o"
+            ],
+            "dependsOn": [
+                "build"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "error"
+                }
+            },
+            "presentation": {
+                "focus": false,
+                "panel": "shared",
+                "reveal": "never",
+                "clear": true,
+                "close": true
+            }
+        },
+        {
+            "label": "execute",
+            "command": "./${relativeFileDirname}/${fileBasenameNoExtension}",
+            "type": "shell",
+            "dependsOn": [
+                "LINK"
+            ],
+            "presentation": {
+                "focus": true,
+                "panel": "shared",
+                "reveal": "always",
+                "clear": true,
+                "close": false
+            }
+        }
+    ]
+}
