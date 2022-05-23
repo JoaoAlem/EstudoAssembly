@@ -60,7 +60,11 @@ _start:
 
     ;mover os numeros para os registros
     mov rdi, [num1] ;[num1] é o local da memória do numero 1
-    sub rdi, '0' ;Converter em decimal
+    sub rdi, '0' ;Converter em decimal, o numero em assembly é armazenado em Ascii
+    ;Quando é inserido um numero no input, como o 7, ele entra sendo 7+48
+    ;(pois na tabela ascii, 7+ 48 = digito decimal de 7), então quando realizamos
+    ;a subtração de var - '0', supondo que var = 7, temos 55-48 = 7
+    ;logo Ascii('7') - Ascii('0') = Int(7)
 
     mov rsi, [num2] ;[num2] é o local da memória do numero 2
     sub rsi, '0' ;Converter em decimal
