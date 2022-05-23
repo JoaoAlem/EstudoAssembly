@@ -5,9 +5,9 @@ STDIN equ 0
 STDOUT equ 1
 
 section .bss
-    num1: resb 2
-    num2: resb 2
-    result: resb 4
+    num1: resb 1
+    num2: resb 1
+    result: resb 1
 
 section .data
     message: db "Digite o primeiro numero: ", 4
